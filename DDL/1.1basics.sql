@@ -69,3 +69,9 @@ FROM staging.priority_roles;
 ALTER TABLE staging.priority_roles
 RENAME COLUMN preferred_role TO priority_lvl;
 
+ALTER TABLE staging.priority_roles
+ALTER COLUMN priority_lvl TYPE INT;
+
+UPDATE staging.priority_roles
+SET priority_lvl = 3
+WHERE role_id = 3;
