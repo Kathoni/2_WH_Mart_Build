@@ -75,3 +75,4 @@ ALTER COLUMN priority_lvl TYPE INT;
 UPDATE staging.priority_roles
 SET priority_lvl = 3
 WHERE role_id = 3;
+
