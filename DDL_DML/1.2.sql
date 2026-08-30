@@ -1,4 +1,4 @@
-CREATE TABLE staging.job_postings_flat AS
+CREATE OR REPLACE TABLE  staging.job_postings_flat AS
 SELECT
     jpf.job_id,
     jpf.job_title_short,
@@ -19,3 +19,27 @@ SELECT
 FROM data_jobs.job_postings_fact AS jpf
 LEFT JOIN data_jobs.company_dim AS cd
     ON jpf.company_id = cd.company_id;
+
+SELECT *
+FROM staging.job_postings_flat
+LIMIT 10;
+
+SELECT COUNT(*)
+FROM staging.job_postings_flat;
+
+CREATE OR REPLACE VIEW staging.priority_jobs_flat_view AS 
+SELECT 
+    jpf.*
+FROM staging.job_postings_flat AS jpf
+JOIN staging.priority_roles AS r
+    ON jpf.job_title_short = r.role_name
+WHERE r.priority_lvl = 1;
+
+SELECT 
+    job_title_short,
+    COUNT(*) AS job_count
+FROM staging.priority_jobs_flat_view
+GROUP BY job_title_short
+ORDER BY job_count DESC;
+
+
