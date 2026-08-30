@@ -1,3 +1,5 @@
+-- CTAS , VIEWS and TEMP
+
 CREATE OR REPLACE TABLE  staging.job_postings_flat AS
 SELECT
     jpf.job_id,
@@ -42,4 +44,14 @@ FROM staging.priority_jobs_flat_view
 GROUP BY job_title_short
 ORDER BY job_count DESC;
 
+CREATE OR REPLACE TEMPORARY TABLE senior_jobs_flat_temp AS 
+SELECT *
+FROM staging.priority_jobs_flat_view
+WHERE job_title_short = 'Senior Data Engineer';
 
+SELECT 
+    job_title_short,
+    COUNT(*) AS job_count
+FROM senior_jobs_flat_temp
+GROUP BY job_title_short
+ORDER BY job_count DESC;
