@@ -1,8 +1,6 @@
-DESCRIBE
+CREATE TABLE staging.job_postings_flat AS
 SELECT
-  SELECT
     jpf.job_id,
-    jpf.company_id,
     jpf.job_title_short,
     jpf.job_title,
     jpf.job_location,
@@ -18,10 +16,6 @@ SELECT
     jpf.salary_year_avg,
     jpf.salary_hour_avg,
     cd.name,
-    cd.link,
-    cd.link_google,
-    cd.thumbnail
 FROM data_jobs.job_postings_fact AS jpf
 LEFT JOIN data_jobs.company_dim AS cd
-    ON jpf.company_id = cd.company_id
-LIMIT 25;
+    ON jpf.company_id = cd.company_id;
