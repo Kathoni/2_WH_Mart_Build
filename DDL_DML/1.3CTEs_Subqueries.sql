@@ -107,5 +107,46 @@ WHERE r.job_work_from_home = TRUE
     AND o.job_work_from_home = FALSE 
 ORDER BY remote_premium DESC;
 
+-- sourse table
+SELECT *
+FROM range(3) AS src(key);
 
-SELECT range(10);
+-- target table
+SELECT *
+FROM range(2) AS tgt(key);
+
+SELECT *
+FROM range(3) AS src(key)
+WHERE EXISTS(
+    SELECT 1
+    FROM range(2) AS tgt(key)
+    WHERE tgt.key = src.key
+);
+
+SELECT *
+FROM range(3) AS src(key)
+WHERE NOT EXISTS(
+    SELECT 1
+    FROM range(2) AS tgt(key)
+    WHERE tgt.key = src.key
+);
+
+-- identify job postings that have no associated skills before loading them into data mart
+SELECT *
+FROM job_postings_fact
+ORDER BY job_id
+LIMIT 10;
+
+SELECT *
+FROM skills_job_dim
+ORDER BY job_id
+LIMIT 40;
+
+SELECT *
+FROM job_postings_fact AS tgt
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM skills_job_dim AS src
+    WHERE tgt.job_id = src.job_id
+)
+ORDER BY job_id;
