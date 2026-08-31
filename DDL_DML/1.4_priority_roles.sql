@@ -1,4 +1,3 @@
-DROP TABLE IF EXISTS priority_roles ;
 CREATE TABLE IF NOT EXISTS staging.priority_roles(
    role_id INTEGER PRIMARY KEY,
    role_name VARCHAR,
