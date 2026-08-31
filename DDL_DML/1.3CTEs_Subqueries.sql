@@ -106,3 +106,6 @@ INNER JOIN title_median AS o
 WHERE r.job_work_from_home = TRUE
     AND o.job_work_from_home = FALSE 
 ORDER BY remote_premium DESC;
+
+
+SELECT range(10);
