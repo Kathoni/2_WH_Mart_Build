@@ -50,6 +50,14 @@ WHERE NOT EXISTS (
 );   
  
 -- DELETE statement
+DELETE FROM main.priority_jobs_snapshot AS tgt
+WHERE NOT EXISTS (
+   SELECT 1
+   FROM src_priority_jobs AS src
+   WHERE src.job_id = tgt.job_id
+);
+
+-- Final Check Query
 SELECT 
     job_title_short,
     COUNT(*) AS job_count,
