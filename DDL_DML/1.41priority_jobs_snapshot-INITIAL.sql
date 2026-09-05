@@ -1,4 +1,4 @@
-TRUNCATE priority_jobs_snapshot;
+-- TRUNCATE priority_jobs_snapshot;
 CREATE TABLE IF NOT EXISTS main.priority_jobs_snapshot(
     job_id INTEGER PRIMARY KEY,
     job_title_short VARCHAR,
