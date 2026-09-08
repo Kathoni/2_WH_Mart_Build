@@ -14,9 +14,9 @@ VALUES
 (6, 'Senior Data Scientist', 2),
 (7, 'Machine Learning Engineer', 2),
 (8, 'Senior Machine Learning Engineer', 2),
-(9, 'Business Intelligence Analyst', 4),
-(10, 'Business Intelligence Developer', 4),
-(11, 'Data Analyst', 5),
-(12, 'Senior Data Analyst', 5);
+(9, 'Business Intelligence Analyst', 4);
+-- (10, 'Business Intelligence Developer', 4),
+-- (11, 'Data Analyst', 5),
+-- (12, 'Senior Data Analyst', 5);
 
 SELECT * FROM staging.priority_roles;
