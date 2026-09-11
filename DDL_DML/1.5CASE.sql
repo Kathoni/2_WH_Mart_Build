@@ -1,0 +1,4 @@
+-- Bucket salaries
+-- <25 = Low
+-- 25-50 = Medium
+-- ? 50 = High
