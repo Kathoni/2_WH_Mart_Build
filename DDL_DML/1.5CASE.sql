@@ -79,7 +79,7 @@ GROUP BY job_title_short  ;
   -- < 75k 'low'
   -- 75k - 150k 'medium'
   -- > 150k 'high'
-
+WITH salaries AS(
 SELECT
     job_title_short,
     salary_year_avg,
@@ -91,5 +91,16 @@ SELECT
     END AS standardized_salary,
 FROM job_postings_fact
 WHERE salary_year_avg IS NOT NULL OR salary_hour_avg IS NOT NULL
+)
+SELECT
+   *,
+   CASE
+       WHEN standardized_salary IS NULL THEN 'Missing'
+       WHEN standardized_salary < 75000 THEN 'Low'
+       WHEN standardized_salary >= 75000 AND standardized_salary <= 150000 THEN 'Medium'
+       ELSE 'High'
+   END AS salary_bucket   
+
+FROM salaries    
+ORDER BY standardized_salary DESC
 LIMIT 10;
-            
