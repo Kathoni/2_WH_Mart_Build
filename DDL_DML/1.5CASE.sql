@@ -53,4 +53,23 @@ LIMIT 20;
 -- Calculate Median Salaries for Different Buckets
  -- < $100k
  -- >= $100k
- 
+
+SELECT
+   job_title_short,
+    COUNT(*) AS total_postings,
+    MEDIAN(
+        CASE 
+            WHEN salary_year_avg < 100000 THEN salary_year_avg
+            ELSE NULL
+        END
+        ) AS median_low_salary,
+    MEDIAN(
+        CASE 
+            WHEN salary_year_avg >= 100000 THEN salary_year_avg
+            ELSE NULL
+        END
+        ) AS median_high_salary
+FROM data_jobs.job_postings_fact   
+wHERE salary_year_avg IS NOT NULL
+GROUP BY job_title_short  ;   
+            
