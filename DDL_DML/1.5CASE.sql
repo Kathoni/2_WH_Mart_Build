@@ -71,5 +71,13 @@ SELECT
         ) AS median_high_salary
 FROM data_jobs.job_postings_fact   
 wHERE salary_year_avg IS NOT NULL
-GROUP BY job_title_short  ;   
+GROUP BY job_title_short  ; 
+
+-- Conditional Calculations
+-- Compute a standardized_salary using yearly salary and adjusted hourly salary (e.g 2000 hours/year)
+-- Categorize salaries into tiers of:
+  -- < 75k 'low'
+  -- 75k - 150k 'medium'
+  -- > 150k 'high'
+  
             
