@@ -29,3 +29,28 @@ SELECT
     END AS salary_category
 FROM data_jobs.job_postings_fact
 LIMIT 10;  
+
+-- Categorizing Categorical Values
+-- Clasify the 'job_title' column values as:
+  -- 'Data Analyst'
+  -- 'Data Engineer'
+  -- 'Data Scientist'
+
+SELECT
+     job_title,
+     CASE
+        WHEN job_title_short LIKE '%Data%' AND job_title LIKE '%Analyst%' THEN 'Data Analyst'
+        WHEN job_title_short LIKE '%Data%' AND job_title LIKE '%Engineer%' THEN 'Data Engineer'
+        WHEN job_title_short LIKE '%Data%' AND job_title LIKE '%Scientist%' THEN 'Data Scientist'
+        ELSE 'Other'
+     END AS job_title_category,
+     job_title_short
+FROM job_postings_fact
+ORDER BY RANDOM()  
+LIMIT 20;       
+
+-- Conditional Aggregation
+-- Calculate Median Salaries for Different Buckets
+ -- < $100k
+ -- >= $100k
+ 
