@@ -14,3 +14,7 @@ SELECT
 FROM data_jobs.job_postings_fact
 WHERE salary_hour_avg IS NOT NULL
 LIMIT 10;    
+
+-- Handling Missing Data (Nulls)
+-- Filter Null salary values
+
