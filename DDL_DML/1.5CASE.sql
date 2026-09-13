@@ -79,5 +79,17 @@ GROUP BY job_title_short  ;
   -- < 75k 'low'
   -- 75k - 150k 'medium'
   -- > 150k 'high'
-  
+
+SELECT
+    job_title_short,
+    salary_year_avg,
+    salary_hour_avg,
+    CASE
+        WHEN salary_year_avg IS NOT NULL THEN salary_year_avg 
+        WHEN salary_hour_avg IS NOT NULL THEN salary_hour_avg*2080
+        ELSE NULL
+    END AS standardized_salary,
+FROM job_postings_fact
+WHERE salary_year_avg IS NOT NULL OR salary_hour_avg IS NOT NULL
+LIMIT 10;
             
