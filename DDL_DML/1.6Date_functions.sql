@@ -9,9 +9,11 @@ LIMIT 10;
 
 -- EXTRACT function
 SELECT 
-    job_posted_date,
     EXTRACT(YEAR FROM job_posted_date) AS job_posted_year,
     EXTRACT(MONTH FROM job_posted_date) AS job_posted_month,
-    EXTRACT(DAY FROM job_posted_date) AS job_posted_day
+    COUNT(job_id) AS job_count
 FROM job_postings_fact
-LIMIT 10;    
+WHERE job_title_short = 'Data Engineer'
+GROUP BY
+     EXTRACT(YEAR FROM job_posted_date),
+     EXTRACT(MONTH FROM job_posted_date) ;    
