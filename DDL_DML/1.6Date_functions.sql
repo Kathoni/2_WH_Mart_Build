@@ -16,4 +16,8 @@ FROM job_postings_fact
 WHERE job_title_short = 'Data Engineer'
 GROUP BY
      EXTRACT(YEAR FROM job_posted_date),
-     EXTRACT(MONTH FROM job_posted_date) ;    
+     EXTRACT(MONTH FROM job_posted_date) 
+ORDER BY  
+     job_posted_year,
+     job_posted_month   
+;    
