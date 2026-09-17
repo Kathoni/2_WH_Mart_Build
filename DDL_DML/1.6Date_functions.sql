@@ -21,3 +21,16 @@ ORDER BY
      job_posted_year,
      job_posted_month   
 ;    
+-- DATE_TRUNC function
+SELECT
+    job_posted_date,
+    DATE_TRUNC('month', job_posted_date) AS truncated_month,
+    DATE_TRUNC('year', job_posted_date) AS truncated_year,
+    DATE_TRUNC('quarter', job_posted_date) AS truncated_quarter,
+    DATE_TRUNC('week', job_posted_date) AS truncated_week,
+    DATE_TRUNC('day', job_posted_date) AS truncated_day,
+    DATE_TRUNC('hour', job_posted_date) AS truncated_hour
+
+FROM job_postings_fact
+ORDER BY RANDOM()
+LIMIT 10;    
