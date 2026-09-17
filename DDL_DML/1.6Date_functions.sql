@@ -51,3 +51,8 @@ ORDER BY
 -- AT TIME ZONE function
 SELECT
     '2027-01-01 00:00:00+00'::TIMESTAMPTZ AT TIME ZONE 'EAT';
+
+SELECT
+    job_posted_date AT TIME ZONE 'UTC' AT TIME ZONE 'EST'
+FROM job_postings_fact
+LIMIT 10;        
