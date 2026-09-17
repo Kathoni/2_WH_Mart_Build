@@ -53,6 +53,23 @@ SELECT
     '2027-01-01 00:00:00+00'::TIMESTAMPTZ AT TIME ZONE 'EAT';
 
 SELECT
+    job_title_short,
+    job_location,
     job_posted_date AT TIME ZONE 'UTC' AT TIME ZONE 'EST'
 FROM job_postings_fact
-LIMIT 10;        
+WHERE
+    job_location = 'New York, NY';
+
+SELECT
+    '2027-01-01 00:00:00+00'::TIMESTAMPTZ AT TIME ZONE 'EAT';
+
+SELECT
+    EXTRACT(HOUR FROM job_posted_date AT TIME ZONE 'UTC' AT TIME ZONE 'EST') AS job_posted_hour,
+    COUNT(job_id)
+FROM job_postings_fact
+WHERE
+    job_location = 'New York, NY'
+GROUP BY 
+    EXTRACT(HOUR FROM job_posted_date AT TIME ZONE 'UTC' AT TIME ZONE 'EST')
+ORDER BY
+    job_posted_hour;            
