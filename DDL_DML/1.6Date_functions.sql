@@ -40,9 +40,14 @@ SELECT
 FROM job_postings_fact
 WHERE 
     job_title_short = 'Data Engineer' AND 
-    EXTRACT(YEAR FROM job_posted_date) = 2024
+   -- EXTRACT(YEAR FROM job_posted_date) = 2024
+     DATE_TRUNC('year', job_posted_date) = '2024-01-01'
 GROUP BY
      DATE_TRUNC('month', job_posted_date)
 ORDER BY  
      job_posted_month   
 ;    
+
+-- AT TIME ZONE function
+SELECT
+    '2027-01-01 00:00:00+00'::TIMESTAMPTZ AT TIME ZONE 'EAT';
